@@ -347,4 +347,8 @@ ensureGPUDrivers() {
     fi
 }
 
+disableSSH() {
+    systemctlDisableAndStop sshd || exit $ERR_DISABLE_SSH
+}
+
 #EOF
