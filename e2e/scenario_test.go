@@ -969,8 +969,10 @@ func Test_imdsrestriction_filtertable(t *testing.T) {
 		Description: "tests that the imds restriction filter table is properly set",
 		Config: Config{
 			Cluster: ClusterAzureNetwork,
-			VHD:     config.VHDAzureLinuxV2Gen2,
+			VHD:     config.VHDUbuntu2204Gen2Containerd,
 			BootstrapConfigMutator: func(nbc *datamodel.NodeBootstrappingConfiguration) {
+				nbc.ContainerService.Properties.AgentPoolProfiles[0].Distro = "aks-ubuntu-containerd-22.04-gen2"
+				nbc.AgentPoolProfile.Distro = "aks-ubuntu-containerd-22.04-gen2"
 				nbc.EnableIMDSRestriction = true
 				nbc.InsertIMDSRestrictionRuleToMangleTable = false
 			},
@@ -986,8 +988,10 @@ func Test_imdsrestriction_mangletable(t *testing.T) {
 		Description: "tests that the imds restriction mangle table is properly set",
 		Config: Config{
 			Cluster: ClusterAzureNetwork,
-			VHD:     config.VHDAzureLinuxV2Gen2,
+			VHD:     config.VHDUbuntu2204Gen2Containerd,
 			BootstrapConfigMutator: func(nbc *datamodel.NodeBootstrappingConfiguration) {
+				nbc.ContainerService.Properties.AgentPoolProfiles[0].Distro = "aks-ubuntu-containerd-22.04-gen2"
+				nbc.AgentPoolProfile.Distro = "aks-ubuntu-containerd-22.04-gen2"
 				nbc.EnableIMDSRestriction = true
 				nbc.InsertIMDSRestrictionRuleToMangleTable = true
 			},
